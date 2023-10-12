@@ -1,0 +1,17 @@
+applications:
+- name: WortKetteBff
+  memory: 1536M
+  disk_quota: 1G
+  instances: 1
+  buildpacks:
+    - dotnet_core_buildpack_latest
+  stack: cflinuxfs3
+  path: "bin/Release/net6.0/publish"
+  routes:
+  - route: WortKetteBff.pcfres-intra.dev.datev.de
+  env:
+    TZ: Europe/Berlin
+    ASPNETCORE_ENVIRONMENT: "Production"
+  services:
+  - WortKetteDB
+  - WortKetteRedis
